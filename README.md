@@ -79,3 +79,54 @@ $ find /toolchains/mipsel-sf-sysv -name ssl.h /toolchains/mipsel-sf-sysv/
 
 Well, now you can build your application and link it (probably statically) against this new OpenSSL library that you have installed, using the toolchain filesystem layout as if it were a system root. You can follow this exact same process, and for many things will be able to use the `cross_configure` shell alias provided by the activate script. Some gotchas: make sure you have the `-L` and `-I` paths set correctly when cross-compiling the application. Without these set, the OpenSSL libraries and headers will not be found. You'll find some software packages are simple and lightning quick to cross-compile while others have non-conformation build systems that give headaches- for example, lsof is a bit of a pain. That's all, good luck.
 
+### Errata - Actviating the Cross-Compile "Environment"
+
+```
+user@hostname:~/cross-compile-openssl$ source /toolchains/mipsel-sf-sysv/activate-musl-toolchain.env 
+--- Build environment setup ---
+
+TOOLCHAIN_TARGET: mipsel-sf-linux-musl
+TOOLCHAIN_BIN: /toolchains/mipsel-sf-sysv/bin
+
+  Symlinking gcc
+  Symlinking addr2line
+  Symlinking ar
+  Symlinking as
+  Symlinking c++
+  Symlinking cpp
+  Symlinking g++
+  Symlinking ld
+  Symlinking nm
+  Symlinking objdump
+  Symlinking ranlib
+  Symlinking strip
+
+TOOLCHAIN_TARGET:  mipsel-sf-linux-musl
+TOOLCHAIN_ROOT:	/toolchains/mipsel-sf-sysv
+TOOLCHAIN_BIN: 	/toolchains/mipsel-sf-sysv/bin
+
+GCC location: /toolchains/mipsel-sf-sysv/bin/gcc
+GAS location: /toolchains/mipsel-sf-sysv/bin/as
+GLD location: /toolchains/mipsel-sf-sysv/bin/ld
+G++ location: /toolchains/mipsel-sf-sysv/bin/g++
+CC location:  /toolchains/mipsel-sf-sysv/bin/cc
+
+UTIL_STATIC:      /crypt-big/toolchains/mipsel-sf-sysv/mipsel-sf-linux-musl/lib/libutil.a
+C_STATIC:         /crypt-big/toolchains/mipsel-sf-sysv/mipsel-sf-linux-musl/lib/libc.a
+DL_STATIC:        /crypt-big/toolchains/mipsel-sf-sysv/mipsel-sf-linux-musl/lib/libdl.a
+PTHREAD_STATIC:   /crypt-big/toolchains/mipsel-sf-sysv/mipsel-sf-linux-musl/lib/libpthread.a
+STDCXX_STATIC:    /crypt-big/toolchains/mipsel-sf-sysv/mipsel-sf-linux-musl/lib/libstdc++.a
+GCCEH_STATIC:     /crypt-big/toolchains/mipsel-sf-sysv/lib/gcc/mipsel-sf-linux-musl/6.4.0/libgcc_eh.a
+
+Use cross_configure to invoke alias for:
+  $./configure --host=mipsel-sf-linux-musl --prefix=/toolchains/mipsel-sf-sysv
+
+user@hostname:~/cross-compile-openssl$ gcc -v
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/crypt-big/toolchains/mipsel-sf-sysv/bin/../libexec/gcc/mipsel-sf-linux-musl/6.4.0/lto-wrapper
+Target: mipsel-sf-linux-musl
+Configured with: ../src_gcc/configure --enable-languages=c,c++ CFLAGS='-pipe -g0 -Os' CXXFLAGS='-pipe -g0 -Os' LDFLAGS=-s --disable-nls --with-debug-prefix-map=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl= --with-float=soft --disable-nls --enable-languages=c,c++ --disable-libgomp --disable-libmudflap --disable-libsanitizer --disable-libssp --disable-target-libbacktrace --with-pkgversion=musl-cross-make/mipsel-sf-sysv/2019-01-05 --with-bugurl=https://github.com/mzpqnxow/musl-cross-make-configs --disable-werror --target=mipsel-sf-linux-musl --prefix= --libdir=/lib --disable-multilib --with-sysroot=/mipsel-sf-linux-musl --enable-tls --disable-libmudflap --disable-libsanitizer --disable-gnu-indirect-function --disable-libmpx --enable-deterministic-archives --enable-libstdcxx-time --with-build-sysroot=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_sysroot AR_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/binutils/ar AS_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/gas/as-new LD_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/ld/ld-new NM_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/binutils/nm-new OBJCOPY_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/binutils/objcopy OBJDUMP_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/binutils/objdump RANLIB_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/binutils/ranlib READELF_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/binutils/readelf STRIP_FOR_TARGET=/home/debian/musl-cross-make/build/local/mipsel-sf-linux-musl/obj_binutils/binutils/strip-new
+Thread model: posix
+gcc version 6.4.0 (musl-cross-make/mipsel-sf-sysv/2019-01-05) 
+```
