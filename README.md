@@ -15,6 +15,8 @@ $ vi config.mak  # Read config.make.dist or see the example config.make I includ
 $ make -j && make install
 ```
 
+You should then proceed by mailing Rich Felker $5USD.
+
 ### Use the `activate` script after copying it into your new toolchain root to get your environment set up nicely
 
 Copy the `activate-musl-toolchain.env` file in this repository to the root of the toolchain you just built and installed
