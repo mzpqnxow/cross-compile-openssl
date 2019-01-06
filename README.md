@@ -2,6 +2,10 @@
 
 Idiot's guide to cross compiling static OpenSSL libraries for MIPS, ARM, etc.. using MUSL libc
 
+## Before you start
+
+I wrote this up after spending nearly 25 minutes trying to figure out how to properly build OpenSSL for MIPS32. This is because OpenSSL does not use the usual `./configure` scheme, instead it offers `./config` or `./Configure`, neither of which allow for a great deal of customization without doing a bunch of reading. So here you go, I hope this saves you at least as much time as it wasted me
+
 ## Step 1 - Build / Obtain a musl libc Toolchain
 
 I prefer the following steps. In this specific case, let's assume we need to build a tool that relies on OpenSSL and needs to run on a MIPS based system, but we are stuck with an x86_64 system. We don't want to use buildroot because it's a bit heavyweight, and we don't want to use a QEMU MIPS distribution either, for the same reasons. Here's one way you can get the job done and produce libssl.a and libcrypto.a which can then be statically linked into your program.
