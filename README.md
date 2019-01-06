@@ -65,5 +65,7 @@ At this point, you should be all set, though expect to get errors due to mistake
 $ make -j && make install
 ```
 
+## Now what?
 
+Well, now you can build your application and link it (probably statically) against this new OpenSSL library that you have installed, using the toolchain filesystem layout as if it were a system root. You can follow this exact same process, and for many things will be able to use the `cross_configure` shell alias provided by the activate script. Some gotchas: make sure you have the `-L` and `-I` paths set correctly when cross-compiling the application. Without these set, the OpenSSL libraries and headers will not be found. You'll find some software packages are simple and lightning quick to cross-compile while others have non-conformation build systems that give headaches- for example, lsof is a bit of a pain. That's all, good luck.
 
