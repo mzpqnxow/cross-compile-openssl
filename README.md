@@ -63,6 +63,12 @@ At this point, you should be all set, though expect to get errors due to mistake
 
 ```
 $ make -j && make install
+$ find /toolchains/mipsel-sf-sysv -name libcrypto.a /toolchains/mipsel-sf-sysv/
+/toolchains/mipsel-sf-sysv/lib/libcrypto.a
+$ find /toolchains/mipsel-sf-sysv -name libssl.a /toolchains/mipsel-sf-sysv/
+/toolchains/mipsel-sf-sysv/lib/libssl.a
+$ find /toolchains/mipsel-sf-sysv -name ssl.h /toolchains/mipsel-sf-sysv/
+/toolchains/mipsel-sf-sysv/include/openssl/ssl.h
 ```
 
 ## Now what?
