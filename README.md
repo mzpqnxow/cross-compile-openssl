@@ -56,7 +56,7 @@ export CROSS_SSL_BIN="$(dirname $(which gcc))" #  Only works if you used the act
 export CROSS_SSL_CMD_PREFIX="${CROSS_SSL_BIN}/${TOOLCHAIN_TARGET}"-
 export CROSS_SSL_INC="${TOOLCHAIN_ROOT}/include"
 export CROSS_SSL_LIB="${TOOLCHAIN_ROOT}/lib"
-./Configure --cross-compile-prefix="${CROSS_SSL_CMD_PREFIX}" -I"${CROSS_SSL_INC}" -L"{CROSS_SSL_LIB}" --prefix="${TOOLCHAIN_ROOT}" "${OPENSSL_ARCH}"
+./Configure --cross-compile-prefix="${CROSS_SSL_CMD_PREFIX}" -I"${CROSS_SSL_INC}" -L"${CROSS_SSL_LIB}" --prefix="${TOOLCHAIN_ROOT}" "${OPENSSL_ARCH}"
 make -j && make install
 ...
 ```
